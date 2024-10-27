@@ -3,35 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jamin Calculator</title>
+    <title>Land Conversion</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="calculator">
-        <h1>Welcome to Jamin Calculator</h1>
-        <div class="input-group">
-            <label for="katha">Enter Katha:</label>
-            <input type="number" id="katha" step="0.01">
-        </div>
-        <div class="input-group">
-            <label for="dhur">Enter Dhur:</label>
-            <input type="number" id="dhur" step="0.01">
-        </div>
-        <div class="input-group">
-            <label for="dhurki">Enter Dhurki:</label>
-            <input type="number" id="dhurki" step="0.01">
-        </div>
-        <div class="input-group">
-            <label for="furki">Enter Furki:</label>
-            <input type="number" id="furki" step="0.01">
-        </div>
-        <div class="input-group">
-            <label for="churki">Enter Churki:</label>
-            <input type="number" id="churki" step="0.01">
-        </div>
-        <button class="calculate-btn" onclick="calculate()">Calculate</button>
-        <div class="result" id="result"></div>
+
+<div class="container">
+    <h2>Land Conversion</h2>
+
+    <div class="input-group flex">
+        <label>Enter Katha:</label>
+        <input type="number" id="katha" step="0.01">
     </div>
-    <script src="script.js"></script>
+    
+    <div class="input-group flex">
+        <label>Enter Dhur:</label>
+        <input type="number" id="dhur" step="0.01">
+    </div>
+ 
+    <div class="input-group flex">
+        <label>Enter Dhurki:</label>
+        <input type="number" id="dhurki" step="0.01">
+    </div>
+
+    <div class="input-group flex">
+        <label>Enter Furki:</label>
+        <input type="number" id="furki" step="0.01">
+    </div>
+
+    <div class="input-group flex">
+        <label>Enter Churki:</label>
+        <input type="number" id="churki" step="0.01">
+    </div>
+
+    <button class="button" onclick="calculateDecimal()">Convert to Decimal</button>
+
+    <div class="output" id="totalDhurOutput"></div>
+    <div class="output" id="decimalOutput"></div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
