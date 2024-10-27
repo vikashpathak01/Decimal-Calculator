@@ -1,55 +1,32 @@
-function findNumber(num) {
-    return num > 0 ? 1 : 0;
-}
+function calculateDecimal() {
+    // Get input values
+    const katha = parseFloat(document.getElementById('katha').value) || 0;
+    const dhur = parseFloat(document.getElementById('dhur').value) || 0;
+    const dhurki = parseFloat(document.getElementById('dhurki').value) || 0;
+    const furki = parseFloat(document.getElementById('furki').value) || 0;
+    const churki = parseFloat(document.getElementById('churki').value) || 0;
 
-function findSum(katha, dhur, dhurki, furki, churki) {
-    let totalSum = 0;
-    if (katha > 0 && dhur > 0 && dhurki > 0 && furki > 0 && churki > 0) {
-        totalSum = (((((katha * 20 + dhur) * 20 + dhurki) * 20 + furki) * 20) + churki);
-    } else if (katha > 0 && dhur > 0 && dhurki > 0 && furki > 0) {
-        totalSum = ((((katha * 20 + dhur) * 20 + dhurki) * 20) + furki);
-    } else if (katha > 0 && dhur > 0 && dhurki > 0) {
-        totalSum = (((katha * 20 + dhur) * 20) + dhurki);
-    } else if (katha > 0 && dhur > 0) {
-        totalSum = (katha * 20 + dhur);
-    } else {
-        totalSum = katha * 20;
-    }
-    return totalSum;
-}
+    // Conversion ratios
+    const kathaToDhur = 20;
+    const dhurToDhurki = 20;
+    const dhurkiToFurki = 20;
+    const furkiToChurki = 20;
+    const dhurToDecimalFactor = 5.375;
 
-function actualValue(totalNo, findSum) {
-    for (let i = 1; i < totalNo; i++) {
-        findSum /= 20;
-    }
-    return findSum;
-}
+    // Convert all units to Dhur
+    const totalDhurFromKatha = katha * kathaToDhur;
+    const totalDhurFromDhur = dhur;
+    const totalDhurFromDhurki = dhurki / dhurToDhurki;
+    const totalDhurFromFurki = furki / (dhurToDhurki * dhurkiToFurki);
+    const totalDhurFromChurki = churki / (dhurToDhurki * dhurkiToFurki * furkiToChurki);
 
-function findTotalDecimal(katha, dhur, dhurki, furki, churki, totalNo) {
-    let findSumValue = findSum(katha, dhur, dhurki, furki, churki);
-    let finalSum = actualValue(totalNo, findSumValue);
-    return finalSum / 5.375;
-}
+    // Sum all Dhur values
+    const totalDhur = totalDhurFromKatha + totalDhurFromDhur + totalDhurFromDhurki + totalDhurFromFurki + totalDhurFromChurki;
 
-function calculate() {
-    const katha = parseFloat(document.getElementById("katha").value) || 0;
-    const dhur = parseFloat(document.getElementById("dhur").value) || 0;
-    const dhurki = parseFloat(document.getElementById("dhurki").value) || 0;
-    const furki = parseFloat(document.getElementById("furki").value) || 0;
-    const churki = parseFloat(document.getElementById("churki").value) || 0;
+    // Convert Dhur to Decimal
+    const decimalValue = totalDhur / dhurToDecimalFactor;
 
-    const dhurNo = findNumber(dhur);
-    const dhurkiNo = findNumber(dhurki);
-    const furkiNo = findNumber(furki);
-    const churkiNo = findNumber(churki);
-    const totalNo = dhurNo + dhurkiNo + furkiNo + churkiNo;
-
-    const totalSum = findSum(katha, dhur, dhurki, furki, churki);
-    const totalDecimalValue = findTotalDecimal(katha, dhur, dhurki, furki, churki, totalNo);
-
-    document.getElementById("result").innerHTML = `
-        Total Number: ${totalSum} <br>
-        Total Division by 20 = ${totalNo - 1} <br>
-        Decimal Number is ====== ${totalDecimalValue.toFixed(4)}
-    `;
+    // Display the results
+    document.getElementById('totalDhurOutput').innerText = `Total Dhur = ${totalDhur.toFixed(6)}`;
+    document.getElementById('decimalOutput').innerText = `Total Decimal = ${decimalValue.toFixed(6)}`;
 }
